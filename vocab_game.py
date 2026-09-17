@@ -14,11 +14,11 @@ if "ans4_val" not in st.session_state:
     st.session_state.ans4_val = ""
 
 # 📌 ฟังก์ชันเคลียร์ค่าเมื่อกดปุ่มเริ่มใหม่
-def reset_game():
+def show_result_dialog(ans1, ans2, ans3, ans4):
     st.session_state.ans1_val = ""  # เคลียร์ค่าช่องข้อ 1
     st.session_state.ans2_val = ""  # เคลียร์ค่าช่องข้อ 2
-    st.session_state.ans3_val = ""  #เคลียร์ค่าช่องข้อ 3
-    st.session_state.ans4_val = ""  #เคลียร์ค่าช่องข้อ 4
+    st.session_state.ans3_val = ""  # เคลียร์ค่าช่องข้อ 3
+    st.session_state.ans4_val = ""  # เคลียร์ค่าช่องข้อ 4
     st.session_state.start = time.time()  # เริ่มเวลาใหม่
     st.session_state.is_ended = False  # ปิด Dialog
 
@@ -55,8 +55,9 @@ def show_result_dialog(ans1, ans2):
         st.success("✅ ข้อ 3: ถูกต้อง")
         score += 1
     else:
-        st.error(f"❌ ข้อ 3: ยังไม่ถูกต้อง (คุณตอบ '{u_ans3}')")
-        # ตรวจข้อ 3
+       st.error(f"❌ ข้อ 3: ยังไม่ถูกต้อง (คุณตอบ '{u_ans3}')")
+        
+    # ตรวจข้อ 4
     if u_ans4 == "watermelon":
         st.success("✅ ข้อ 4: ถูกต้อง")
         score += 1
@@ -90,19 +91,19 @@ st.divider()
 
 # 3. ช่องรับคำตอบ (ใช้ value ผูกกับตัวแปรตรงๆ เพื่อสั่งเคลียร์ได้)
 ans1 = st.text_input(
-    "ข้อ 1: An 'a _ _ l e' a day keeps the doctor away. 🍎"
+    "ข้อ 1: An 'a _ _ l e' a day keeps the doctor away. 🍎",
     value=st.session_state.ans1_val)
 ans2 = st.text_input(
-    "ข้อ 2: Cats love to eat'f _ s h'. 🐟"
+    "ข้อ 2: Cats love to eat'f _ s h'. 🐟",
     value=st.session_state.ans2_val)
 ans3 = st.text_input(
-    "ข้อ 3: Black bear like to eat 'bl_eb__r_'. 🫐 "
+    "ข้อ 3: Black bear like to eat 'bl_eb__r_'. 🫐 ",
     value=st.session_state.ans3_val)
 ans4 = st.text_input(
-    "ข้อ 4: jintara sings the 'w_term__on' song. 🍉"
+    "ข้อ 4: jintara sings the 'w_term__on' song. 🍉",
     value=st.session_state.ans4_val)
 
-    # อัปเดตค่าล่าสุดเข้าตัวแปร
+# อัปเดตค่าล่าสุดเข้าตัวแปร
 st.session_state.ans1_val = ans1
 st.session_state.ans2_val = ans2
 st.session_state.ans3_val = ans3
