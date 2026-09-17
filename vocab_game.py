@@ -13,8 +13,8 @@ if "ans3_val" not in st.session_state:
 if "ans4_val" not in st.session_state:
     st.session_state.ans4_val = ""
 
-# 📌 ฟังก์ชันเคลียร์ค่าเมื่อกดปุ่มเริ่มใหม่
-def show_result_dialog(ans1, ans2, ans3, ans4):
+# 📌 ฟังก์ชันเคลียร์ค่าเมื่อกดปุ่มเริ่มใหม่ (แก้ไขชื่อฟังก์ชันให้ถูกต้อง)
+def reset_game():
     st.session_state.ans1_val = ""  # เคลียร์ค่าช่องข้อ 1
     st.session_state.ans2_val = ""  # เคลียร์ค่าช่องข้อ 2
     st.session_state.ans3_val = ""  # เคลียร์ค่าช่องข้อ 3
@@ -27,7 +27,7 @@ def show_result_dialog(ans1, ans2, ans3, ans4):
 # 📌 ฟังก์ชัน MessageBox (Dialog)
 # ----------------------------------------------------
 @st.dialog("📊 สรุปผลการเล่นเกม")
-def show_result_dialog(ans1, ans2):
+def show_result_dialog(ans1, ans2, ans3, ans4):  # เพิ่ม ans3, ans4 ให้ครบ
     st.balloons()
     score = 0
 
@@ -35,7 +35,7 @@ def show_result_dialog(ans1, ans2):
     u_ans2 = ans2.strip().lower()
     u_ans3 = ans3.strip().lower()
     u_ans4 = ans4.strip().lower()
-    
+
     # ตรวจข้อ 1
     if u_ans1 == "apple":
         st.success("✅ ข้อ 1: ถูกต้อง")
@@ -55,8 +55,8 @@ def show_result_dialog(ans1, ans2):
         st.success("✅ ข้อ 3: ถูกต้อง")
         score += 1
     else:
-       st.error(f"❌ ข้อ 3: ยังไม่ถูกต้อง (คุณตอบ '{u_ans3}')")
-        
+        st.error(f"❌ ข้อ 3: ยังไม่ถูกต้อง (คุณตอบ '{u_ans3}')")
+
     # ตรวจข้อ 4
     if u_ans4 == "watermelon":
         st.success("✅ ข้อ 4: ถูกต้อง")
@@ -89,19 +89,23 @@ if "start" in st.session_state and not st.session_state.get("is_ended", False):
 
 st.divider()
 
-# 3. ช่องรับคำตอบ (ใช้ value ผูกกับตัวแปรตรงๆ เพื่อสั่งเคลียร์ได้)
+# 3. ช่องรับคำตอบ
 ans1 = st.text_input(
     "ข้อ 1: An 'a _ _ l e' a day keeps the doctor away. 🍎",
-    value=st.session_state.ans1_val)
+    value=st.session_state.ans1_val,
+)
 ans2 = st.text_input(
-    "ข้อ 2: Cats love to eat'f _ s h'. 🐟",
-    value=st.session_state.ans2_val)
+    "ข้อ 2: Cats love to eat 'f _ s h'. 🐟",
+    value=st.session_state.ans2_val,
+)
 ans3 = st.text_input(
     "ข้อ 3: Black bear like to eat 'bl_eb__r_'. 🫐 ",
-    value=st.session_state.ans3_val)
+    value=st.session_state.ans3_val,
+)
 ans4 = st.text_input(
-    "ข้อ 4: jintara sings the 'w_term__on' song. 🍉",
-    value=st.session_state.ans4_val)
+    "ข้อ 4: Jintara sings the 'w_term__on' song. 🍉",
+    value=st.session_state.ans4_val,
+)
 
 # อัปเดตค่าล่าสุดเข้าตัวแปร
 st.session_state.ans1_val = ans1
@@ -121,7 +125,7 @@ if "start" in st.session_state and not st.session_state.get("is_ended", False):
 
 # 5. แสดง Dialog ผลลัพธ์
 if st.session_state.get("is_ended", False):
-    show_result_dialog(ans1,ans2,ans3,ans4 )
+    show_result_dialog(ans1, ans2, ans3, ans4)
 
 st.divider()
 st.write("นางสาวกิรณา มโนกิตธนกร เลขที่ 7 ม.4/15")
