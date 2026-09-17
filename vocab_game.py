@@ -89,18 +89,17 @@ if "start" in st.session_state and not st.session_state.get("is_ended", False):
 st.divider()
 
 # 3. ช่องรับคำตอบ (ใช้ value ผูกกับตัวแปรตรงๆ เพื่อสั่งเคลียร์ได้)
-ans1 = st.text_input(...)
-    "ข้อ 1: An 'a _ _ l e' a day keeps the doctor away. 🍎"
+ans1 = st.text_input(
+    "ข้อ 1: An 'a _ _ l e' a day keeps the doctor away. 🍎")
     value=st.session_state.ans1_val
 ans2 = st.text_input(
-    ...)
-    "ข้อ 2: Cats love to eat'f _ s h'. 🐟"
+    "ข้อ 2: Cats love to eat'f _ s h'. 🐟")
     value=st.session_state.ans2_val
-ans3 = st.text_input(...)
-    "ข้อ 3: Cats love to eat 'Bl_eb__r_'. 🫐 "
+ans3 = st.text_input(
+    "ข้อ 3: Black bear like to eat 'bl_eb__r_'. 🫐 ")
     value=st.session_state.ans3_val
-ans4 = st.text_input(...)
-    "ข้อ 4: Cats love to eat 'W_term__on'. 🍉"
+ans4 = st.text_input(
+    "ข้อ 4: jintara sings the 'w_term__on' song. 🍉")
     value=st.session_state.ans4_val
 
     # อัปเดตค่าล่าสุดเข้าตัวแปร
@@ -121,7 +120,7 @@ if "start" in st.session_state and not st.session_state.get("is_ended", False):
 
 # 5. แสดง Dialog ผลลัพธ์
 if st.session_state.get("is_ended", False):
-    show_result_dialog(ans1, ans2, ans3,ans4 )
+    show_result_dialog(ans1,ans2,ans3,ans4 )
 
 st.divider()
 st.write("นางสาวกิรณา มโนกิตธนกร เลขที่ 7 ม.4/15")
